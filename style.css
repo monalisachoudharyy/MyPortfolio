@@ -1,30 +1,32 @@
 :root {
-    --pink: #ff69b4;
-    --coral: #ff7f50;
-    --lime: #adff2f;
-    --cyan: #00ffff;
-    --teal: #008080;
+    --carolina-blue: #4B9CD3;
+    --pastel-pink: #FFD1DC;
+    --tea-rose: #F4C2C2;
+    --max-blue-purple: #A2A2D0;
+    --un-blue: #5B92E5;
     --dark: #121212;
-    --light-text: #f0f0f0;
+    --light-text: #ffffff;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
+    background: linear-gradient(135deg, var(--carolina-blue), var(--max-blue-purple));
     color: var(--light-text);
-    background-color: var(--dark);
     scroll-behavior: smooth;
 }
 
+/* HEADER */
 .header {
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(18, 18, 18, 0.6);
     padding: 1rem 2rem;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
 .header nav {
@@ -34,18 +36,21 @@ body {
 }
 
 .nav-link {
-    color: var(--light-text);
+    color: var(--pastel-pink);
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s ease;
+    font-size: 1.1rem;
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .nav-link:hover {
-    color: var(--lime);
+    color: var(--tea-rose);
+    transform: scale(1.1);
 }
 
+/* SECTION */
 .section {
-    padding: 80px 5%;
+    padding: 100px 5%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -57,86 +62,91 @@ body {
 .section h2 {
     font-size: 3rem;
     margin-bottom: 2rem;
-    color: var(--pink);
+    background: linear-gradient(to right, var(--pastel-pink), var(--un-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
-/* Hero Section Specifics */
+/* HERO */
 .hero-section {
-    background: linear-gradient(to right, var(--pink), var(--coral));
-    color: #fff;
-    min-height: 100vh;
+    background: linear-gradient(135deg, var(--pastel-pink), var(--carolina-blue), var(--max-blue-purple));
+    color: var(--dark);
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    flex-direction: column;
+    padding: 0 10%;
 }
 
 .hero-section h1 {
     font-size: 4rem;
     margin: 0;
-    animation: fadeIn 1.5s ease-in-out;
+    animation: fadeIn 1.2s ease-in-out;
+    color: var(--dark);
 }
 
 .hero-section .subtitle {
     font-size: 1.5rem;
-    font-weight: 300;
-    animation: slideUp 1.8s ease-in-out;
+    font-weight: 400;
+    margin: 1rem 0;
+    color: var(--un-blue);
+    animation: slideUp 1.5s ease-in-out;
 }
 
 .hero-section .summary {
-    max-width: 600px;
+    max-width: 650px;
     margin: 1rem auto;
+    line-height: 1.6;
     animation: fadeIn 2s ease-in-out;
 }
 
+/* BUTTON */
 .btn {
-    background-color: var(--lime);
-    color: var(--dark);
+    margin-top: 20px;
+    background: linear-gradient(to right, var(--un-blue), var(--carolina-blue));
+    color: #fff;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 28px;
     border-radius: 50px;
     font-weight: 600;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 6px 20px rgba(75, 156, 211, 0.4);
 }
 
 .btn:hover {
-    transform: translateY(-5px);
-    background-color: var(--cyan);
+    transform: translateY(-6px) scale(1.05);
+    background: linear-gradient(to right, var(--tea-rose), var(--pastel-pink));
+    color: var(--dark);
 }
 
-/* Work and Projects Sections */
-.work-section, .projects-section {
-    background-color: var(--dark);
-}
-
+/* CARDS */
 .job, .project-card {
-    background-color: #1e1e1e;
+    background: rgba(255, 255, 255, 0.1);
     padding: 2rem;
     margin: 1rem;
-    border-radius: 10px;
-    border-left: 5px solid var(--lime);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     max-width: 800px;
     width: 100%;
     text-align: left;
 }
 
+.job:hover, .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+}
+
 .job h3, .project-card h3 {
-    color: var(--cyan);
-    margin-top: 0;
+    color: var(--pastel-pink);
 }
 
-.job p, .project-tech {
-    color: var(--light-text);
-    opacity: 0.7;
-}
-
-.job ul {
-    list-style-type: '👉 ';
-    padding-left: 1.5rem;
-}
-
+/* SKILLS */
 .skills-section {
-    background-color: var(--teal);
+    background: var(--max-blue-purple);
 }
 
 .skills-list {
@@ -149,43 +159,61 @@ body {
 }
 
 .skills-list li {
-    background-color: var(--pink);
-    padding: 10px 20px;
+    background: var(--carolina-blue);
+    padding: 12px 24px;
     border-radius: 50px;
     color: #fff;
     font-weight: 600;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .skills-list li:hover {
-    transform: translateY(-5px);
-    background-color: var(--coral);
+    background: var(--tea-rose);
+    color: var(--dark);
+    transform: translateY(-6px) scale(1.05);
 }
 
+/* CONTACT */
 .contact-section {
-    background-color: var(--coral);
+    background: var(--tea-rose);
     color: var(--dark);
+    padding: 80px 5%;
+    border-radius: 20px;
 }
 
 .contact-section a {
-    color: var(--dark);
+    color: var(--carolina-blue);
     font-weight: 600;
 }
 
+/* FOOTER */
 footer {
-    background-color: var(--dark);
+    background: var(--dark);
     text-align: center;
-    padding: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    border-top: 1px solid rgba(255,255,255,0.2);
 }
 
-/* Basic Animations */
+/* ANIMATIONS */
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(15px);}
+    to { opacity: 1; transform: translateY(0);}
 }
 
 @keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+    from { transform: translateY(40px); opacity: 0;}
+    to { transform: translateY(0); opacity: 1;}
+}
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
