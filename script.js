@@ -1,30 +1,27 @@
-// Smooth fade-in animation on scroll
+// Scroll reveal animation
 document.addEventListener("DOMContentLoaded", () => {
-    const faders = document.querySelectorAll(".fade-in, .job, .project-card, .skills-list li");
+    const sections = document.querySelectorAll(".timeline-item, .project-card, .skills-list li");
 
-    const appearOptions = {
-        threshold: 0.2,
-        rootMargin: "0px 0px -50px 0px"
-    };
-
-    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    const reveal = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
+            if (entry.isIntersecting) {
+                entry.target.classList.add("fade-in");
+                observer.unobserve(entry.target);
+            }
         });
-    }, appearOptions);
+    }, { threshold: 0.2 });
 
-    faders.forEach(fader => {
-        appearOnScroll.observe(fader);
-    });
+    sections.forEach(sec => reveal.observe(sec));
 });
 
-// Add subtle floating animation to hero text
-const heroTitle = document.querySelector(".hero-section h1");
-if (heroTitle) {
-    setInterval(() => {
-        heroTitle.style.transform = "translateY(-5px)";
-        setTimeout(() => heroTitle.style.transform = "translateY(0)", 500);
-    }, 3000);
-}
+// Hover interaction for projects
+document.querySelectorAll(".project-card").forEach(card => {
+    card.addEventListener("click", () => {
+        card.classList.toggle("expanded");
+        if (card.classList.contains("expanded")) {
+            card.style.maxHeight = "300px";
+        } else {
+            card.style.maxHeight = "150px";
+        }
+    });
+});
