@@ -1,13 +1,30 @@
-// This file is ready for you to add more advanced JavaScript features.
-// For example, you could add scroll-based animations to reveal sections.
+// Smooth fade-in animation on scroll
+document.addEventListener("DOMContentLoaded", () => {
+    const faders = document.querySelectorAll(".fade-in, .job, .project-card, .skills-list li");
 
-// Example for adding a class on scroll
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        if (sectionTop < window.innerHeight - 100) {
-            section.classList.add('visible');
-        }
+    const appearOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+        });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+        appearOnScroll.observe(fader);
     });
 });
+
+// Add subtle floating animation to hero text
+const heroTitle = document.querySelector(".hero-section h1");
+if (heroTitle) {
+    setInterval(() => {
+        heroTitle.style.transform = "translateY(-5px)";
+        setTimeout(() => heroTitle.style.transform = "translateY(0)", 500);
+    }, 3000);
+}
